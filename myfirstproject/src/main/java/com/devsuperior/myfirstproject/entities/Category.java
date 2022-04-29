@@ -1,7 +1,11 @@
 package com.devsuperior.myfirstproject.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Category implements Serializable {
 
@@ -9,8 +13,10 @@ public class Category implements Serializable {
 	private Long id;
 	private String nome;
 	
+	@JsonIgnore // Para não Serealizar esta lista de produtos
+	private List<Product> products = new ArrayList<>();
+	
 	public Category() {
-		
 	}
 
 	public Category(Long id, String nome) {
@@ -34,6 +40,14 @@ public class Category implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+//	public void setProducts(List<Product> products) {
+//		this.products = products;
+//	}
 
 	@Override
 	public int hashCode() {
