@@ -23,14 +23,12 @@ public class CategoryResource {
 	public ResponseEntity<List<Category>> findAll() {//findAll: Encontrar todos
 		List<Category> list = categoryRepository.findAll();//Nesse momento vai ser quem acessa os dados ou memoria, buscando e retornando para nós
 		return ResponseEntity.ok().body(list);
-		
-		
-		
+			
 	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Category> findById(@PathVariable Long id) {//@PathVariable: Vai reconhecer o /1 ou 2. que são os id
-		Category cat = categoryRepository.findById(id);
+		Category cat = categoryRepository.findById(id).get();
 		return ResponseEntity.ok().body(cat);
 	}
 	

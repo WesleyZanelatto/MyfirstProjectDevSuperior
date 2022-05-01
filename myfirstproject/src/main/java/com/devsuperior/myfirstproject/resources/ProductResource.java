@@ -17,11 +17,11 @@ import com.devsuperior.myfirstproject.repositories.ProductRepository;
 public class ProductResource {
 
 	@Autowired//Injeção de Dependencia já cria uma instancia/objeto de ProductRepository em ProductResource
-	private ProductRepository categoryRepository;
+	private ProductRepository productRepository;
 	
 	@GetMapping
 	public ResponseEntity<List<Product>> findAll() {//findAll: Encontrar todos
-		List<Product> list = categoryRepository.findAll();//Nesse momento vai ser quem acessa os dados ou memoria, buscando e retornando para nós
+		List<Product> list = productRepository.findAll();//Nesse momento vai ser quem acessa os dados ou memoria, buscando e retornando para nós
 		return ResponseEntity.ok().body(list);
 		
 		
@@ -30,8 +30,8 @@ public class ProductResource {
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Product> findById(@PathVariable Long id) {//@PathVariable: Vai reconhecer o /1 ou 2. que são os id
-		Product cat = categoryRepository.findById(id);
-		return ResponseEntity.ok().body(cat);
+		Product obj = productRepository.findById(id).get();
+		return ResponseEntity.ok().body(obj);
 	}
 	
 	
